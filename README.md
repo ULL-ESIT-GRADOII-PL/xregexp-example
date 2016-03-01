@@ -28,3 +28,7 @@ o bien de:
     npm install
     npm install -g gulp
     npm install -g http-server
+
+# Despliegue
+
+  Visita [index.html](ULL-ESIT-GRADOII-PL.github.io/xregexp-example) en github.io y abre la cónsola de Chrome
