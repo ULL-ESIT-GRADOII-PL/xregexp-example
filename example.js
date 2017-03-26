@@ -22,7 +22,7 @@ console.log(formatf); // -> '22/01/2005'
 // It also includes optional pos and sticky arguments
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky
 var pos = 3;
-var result = [];             0123456789012345
+var result = [];           //0123456789012345
 while (match = XRegExp.exec('<1><2><3><4>abz<6>', /<(\d+)>/, pos, 'sticky')) {
     result.push(match[1]);
     pos = match.index + match[0].length;
