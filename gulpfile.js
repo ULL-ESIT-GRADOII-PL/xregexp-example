@@ -1,12 +1,13 @@
 var gulp  = require('gulp');
 var shell = require('gulp-shell');
 
-gulp.task('download', function () {
-  return gulp.src('').pipe(shell(["curl http://xregexp.com/v/3.1.0/xregexp-all.js -s -O"]));
-});
+// downloads last version of xregexp for the browser
+gulp.task('download', shell.task(["curl https://raw.githubusercontent.com/slevithan/xregexp/master/xregexp-all.js -O"]));
 
-// npm install -g http-server
-gulp.task('default', function() {
-  return gulp.src('').pipe(shell(['http-server']));
-});
+gulp.task('default', shell.task(['node_modules/.bin/http-server']));
+
+// >= 7.7.4
+gulp.task('debug-node', shell.task(['node --inspect-brk example.js']));
+
+gulp.task('node', shell.task(['node example.js']));
 
