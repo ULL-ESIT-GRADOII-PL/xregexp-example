@@ -123,3 +123,9 @@ console.log(result);
 {name: 'literal', value: '.\\{', start: 6, end: 9},
 {name: 'value',   value: 'function(x,y){return {y:x}}', start: 10, end: 37}
 ] */
+
+// Sticky mode via flag y
+str = '<1><<<2>>><3>4<5>';
+result = XRegExp.matchRecursive(str, '<', '>', 'gy');
+console.log(result); 
+// -> ['1', '<<2>>', '3']
