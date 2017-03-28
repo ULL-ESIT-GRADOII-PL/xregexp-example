@@ -86,3 +86,40 @@ console.log(result); // dogDOG
 result = XRegExp.match('... a+b*c ...', merge);
 console.log(result); // a+b*c
 
+// http://xregexp.com/api/#matchRecursive
+var str = '(t((e))s)t()(ing)';
+result = XRegExp.matchRecursive(str, '\\(', '\\)', 'g');
+console.log(result); // -> ['t((e))s', '', 'ing']
+
+// Extended information mode with valueNames
+str = 'Here is <div> <div>an</div></div> example <div > and </div> more';
+result = XRegExp.matchRecursive(str, '<div\\s*>', '</div>', 'gi', {
+  valueNames: ['between', 'left', 'match', 'right']
+});
+console.log(result); 
+/* -> [ 
+  { name: 'between', value: 'Here is ', start: 0, end: 8 },
+  { name: 'left', value: '<div>', start: 8, end: 13 },
+  { name: 'match', value: ' <div>an</div>', start: 13, end: 27 },
+  { name: 'right', value: '</div>', start: 27, end: 33 },
+  { name: 'between', value: ' example ', start: 33, end: 42 },
+  { name: 'left', value: '<div >', start: 42, end: 48 },
+  { name: 'match', value: ' and ', start: 48, end: 53 },
+  { name: 'right', value: '</div>', start: 53, end: 59 },
+  { name: 'between', value: ' more', start: 59, end: 64 } 
+] */
+
+// Omitting unneeded parts with null valueNames, and using escapeChar
+//     012345678901234567890123456789012345678
+str = '...{1}.\\{{function(x,y){return {y:x}}}';
+result = XRegExp.matchRecursive(str, '{', '}', 'g', {
+  valueNames: ['literal', null, 'value', null],
+  escapeChar: '\\'
+});
+console.log(result); 
+/* -> [
+{name: 'literal', value: '...',  start: 0, end: 3},
+{name: 'value',   value: '1',    start: 4, end: 5},
+{name: 'literal', value: '.\\{', start: 6, end: 9},
+{name: 'value',   value: 'function(x,y){return {y:x}}', start: 10, end: 37}
+] */
