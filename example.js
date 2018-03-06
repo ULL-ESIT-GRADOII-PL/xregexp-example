@@ -134,3 +134,13 @@ str = '<1><<<2>>><3>4<5>';
 result = XRegExp.matchRecursive(str, '<', '>', 'gy');
 console.log(result); 
 // -> ['1', '<<2>>', '3']
+
+
+// See http://eloquentjavascript.net/09_regexp.html Dynamically creating RegExp objects
+let name = "dea+hl[]rd";
+let text = "This dea+hl[]rd guy is super annoying.";
+let escaped = XRegExp.escape(name);
+let regexp = new RegExp("\\b" + escaped + "\\b", "gi");
+console.log(text.replace(regexp, "_$&_"));
+// → This _dea+hl[]rd_ guy is super annoying.
+//
