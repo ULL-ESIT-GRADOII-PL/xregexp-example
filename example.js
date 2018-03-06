@@ -111,10 +111,15 @@ console.log(result);
 
 // Omitting unneeded parts with null valueNames, and using escapeChar
 //     012345678901234567890123456789012345678
-str = '...{1}.\\{{function(x,y){return {y:x}}}';
+str = `...{1};
+
+// los bloques se abren con %{
+{function(x,y){return {y:x}}}
+
+`;
 result = XRegExp.matchRecursive(str, '{', '}', 'g', {
   valueNames: ['literal', null, 'value', null],
-  escapeChar: '\\'
+  escapeChar: '%'
 });
 console.log(result); 
 /* -> [
