@@ -46,14 +46,25 @@ console.log("ñ❦".match(XRegExp('[\\p{Latin}\\p{Common}]', "g"))); // Floral h
                                                                   // [ 'ñ', '❦' ]
 
 // Blocks (use 'In' prefix)
-XRegExp('\\p{InLatinExtended-A}');
-XRegExp('\\P{InPrivateUseArea}'); // Uppercase \P for negation
+console.log("ĦƜ".match(XRegExp('\\p{InLatinExtended-A}', "g"))); // [ 'Ħ' ]
+
+/*
+   In Unicode, a Private Use Area (PUA) is a range of code points
+   that, by definition, will not be assigned characters by the Unicode
+   Consortium. 
+   Currently, three private use areas are defined: one
+   in the Basic Multilingual Plane (U+E000–U+F8FF), and one each in,
+   and nearly covering, planes 15 and 16 (U+F0000–U+FFFFD,
+   U+100000–U+10FFFD).
+ */
+console.log(XRegExp('\\P{InPrivateUseArea}').test("\u{F8FF}")); // Uppercase \P for negation
 
 console.log("Mongolian "+XRegExp('\\p{^InMongolian}').test("ᠠ")); // False: Alternate negation syntax Unicode Character 'MONGOLIAN LETTER A' (U+1820)
 
 // Properties
 XRegExp('\\p{ASCII}');
-XRegExp('\\p{Assigned}');
+
+console.log("\\u{0378} \u{0378} is unicode assigned? ", XRegExp('\\p{Assigned}').test("\u{0378}"));
 
 // In action...
 
@@ -87,6 +98,8 @@ console.log("Astral option");
 // \p{S} or \p{Symbol}: math symbols, currency signs, dingbats, box-drawing characters, etc.
 console.log(XRegExp('^\\pS$').test('💩')); // -> false
 console.log(XRegExp('^\\pS$', 'A').test('💩')); // -> true
+console.log(XRegExp('^\\pS$', 'A').test('A')); // -> false
+console.log(XRegExp('^\\pS$', 'A').test('∰')); // -> true
 
 // Setting the option A inside the regexp
 XRegExp('(?A)^\\pS$').test('💩'); // -> true
