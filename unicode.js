@@ -11,8 +11,17 @@ console.log(XRegExp('\\p{Cyrillic}').test("Б")); // true
 
 let id = XRegExp('[_\\pL][_\\pL\\pN]+'); // L: Letter, N: number
 console.log("is id Русский६?: ",id.exec("Русский६")); // Russian and Devanagari
+                                  // [ 'Русский६', index: 0, input: 'Русский६' ]
 console.log("is id _Русский६?: ",id.exec("_Русский६")); // and underscore
+                                  // [ '_Русский६', index: 0, input: '_Русский६' ]
+console.log("is id ;_Русск:ий६?: ",id.exec(";_Русск:ий६")); 
+                                 // [ '_Русск', index: 1, input: ';_Русск:ий६' ]
 
+let number = XRegExp('\\pN+', "g"); // N: number
+console.log("numbers in ६६७?: ",number.exec("६६७")); 
+                                  // [ '६६७', index: 0, input: '६६७' ]
+console.log("numbers in ६६७+६७*2?: ","६६७+६७*2".match(number)); 
+                                  // [ '६६७', '६७', '2' ]
 /*
  In Unicode, a *script* is a collection of letters and other written
  signs used to represent textual information in one or more writing
