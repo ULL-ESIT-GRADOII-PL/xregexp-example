@@ -9,6 +9,10 @@ console.log("€६ (Devanagari 6) matches ", r.test("€६")); // ६ (Devanag
 // Scripts
 console.log(XRegExp('\\p{Cyrillic}').test("Б")); // true
 
+let id = XRegExp('[_\\pL][_\\pL\\pN]+'); // L: Letter, N: number
+console.log("is id Русский६?: ",id.exec("Русский६")); // Russian and Devanagari
+console.log("is id _Русский६?: ",id.exec("_Русский६")); // and underscore
+
 /*
  In Unicode, a *script* is a collection of letters and other written
  signs used to represent textual information in one or more writing
