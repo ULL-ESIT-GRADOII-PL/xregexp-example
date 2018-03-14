@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.9.0",
-    "xregexp": "^3.1.1"
+    "xregexp": "^3.2.0"
   },
   "devDependencies": {
     "gulp-shell": "^0.5.2"
