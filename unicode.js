@@ -18,7 +18,7 @@ console.log("is id ;_Русск:ий६?: ",id.exec(";_Русск:ий६"));
                                  // [ '_Русск', index: 1, input: ';_Русск:ий६' ]
 
 let number = XRegExp('\\pN+', "g"); // N: number
-console.log("numbers in ६६७?: ",number.exec("६६७")); 
+console.log("numbers in ६६७ (667)?: ",number.exec("६६७")); 
                                   // [ '६६७', index: 0, input: '६६७' ]
 console.log("numbers in ६६७+६७*2?: ","६६७+६७*2".match(number)); 
                                   // [ '६६७', '६७', '2' ]
