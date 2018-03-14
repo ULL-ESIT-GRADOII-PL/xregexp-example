@@ -42,7 +42,8 @@ console.log("numbers in ६६७+६७*2?: ","६६७+६७*2".match(number
  signs, symbols, numerals and punctuation marks. In these cases
  Unicode defines them as belonging to the "common" script
  */
-console.log(XRegExp('[\\p{Latin}\\p{Common}]').test("ñ❦")); // Floral heart u2766
+console.log("ñ❦".match(XRegExp('[\\p{Latin}\\p{Common}]', "g"))); // Floral heart u2766
+                                                                  // [ 'ñ', '❦' ]
 
 // Blocks (use 'In' prefix)
 XRegExp('\\p{InLatinExtended-A}');
@@ -82,9 +83,14 @@ console.log(XRegExp("^\\p{Katakana}+$").test("カタカナ")); // true
 // Using flag A to match astral code points
 
 console.log("Astral option");
+
+// \p{S} or \p{Symbol}: math symbols, currency signs, dingbats, box-drawing characters, etc.
 console.log(XRegExp('^\\pS$').test('💩')); // -> false
 console.log(XRegExp('^\\pS$', 'A').test('💩')); // -> true
+
+// Setting the option A inside the regexp
 XRegExp('(?A)^\\pS$').test('💩'); // -> true
+//
 // Using surrogate pair U+D83D U+DCA9 to represent U+1F4A9 (pile of poo)
 XRegExp('(?A)^\\pS$').test('\uD83D\uDCA9'); // -> true
 
@@ -92,5 +98,8 @@ XRegExp('(?A)^\\pS$').test('\uD83D\uDCA9'); // -> true
 XRegExp.install('astral');
 XRegExp('^\\pS$').test('💩'); // -> true
 /*
-Opting in to astral mode disables the use of \p{…} and \P{…} within character classes. In astral mode, use e.g. (\pL|[0-9_])+ instead of [\pL0-9_]+.
+  Opting in to astral mode disables the use of \p{…} and \P{…} within
+  character classes. 
+  
+  In astral mode, use e.g. (\pL|[0-9_])+ instead of [\pL0-9_]+.
 */
