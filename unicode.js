@@ -98,6 +98,9 @@ console.log("Astral option");
 // \p{S} or \p{Symbol}: math symbols, currency signs, dingbats, box-drawing characters, etc.
 console.log(XRegExp('^\\pS$').test('💩')); // -> false
 console.log(XRegExp('^\\pS$', 'A').test('💩')); // -> true
+
+console.log("Astral option no longer so interesting! "+(/\p{Symbol}/u).test('💩'));
+
 console.log(XRegExp('^\\pS$', 'A').test('A')); // -> false
 console.log(XRegExp('^\\pS$', 'A').test('∰')); // -> true
 
